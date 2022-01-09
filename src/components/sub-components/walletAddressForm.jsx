@@ -1,13 +1,13 @@
 
 import React, {useEffect, useState} from 'react';
-import { useDispatch, UseSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { submit } from '../../store/actions/walletActions';
 import { findWallet } from '../utils/double';
 import { getData } from '../utils/getData';
 
 const INITIAL_STATE = {
-    firstWalletAddress: '',
-    secondWalletAddress: '',
+    firstWalletAddress: '',//needs to match (e.target.name) name='firstWallet'
+    secondWalletAddress: '',//needs to match (e.target.name) name='secondWallet'
     firstWalletData: [],
     secondWalletData: [],
 };
@@ -39,34 +39,33 @@ const WalletAddressForm = () => {
         e.preventDefault();
         console.log('Submit Executed');
         try {
-            const{firstWalletAddress, secondWalletAddress, firstWalletData, secondWalletData} = wallets
-            //make api call for data
+            const{ firstWalletAddress, secondWalletAddress } = wallets;
+            // make api calls
             const _firstWalletData = await getData(firstWalletAddress);
-            // console.log(_firstWalletData);
-            // console.log('');
+            // console.log('_firstWalletData', _firstWalletData);
+            setWallets({...wallets, firstWalletData: _firstWalletData})
             const _secondWalletData = await getData(secondWalletAddress);
-            // console.log(_secondWalletData);
-            // console.log('');
+            // console.log('_secondWalletData', _secondWalletData);
+            setWallets({...wallets, secondWalletData: _secondWalletData})
+
+            // get transaction matches
             const firstWalletTransactions = findWallet(secondWalletAddress, _firstWalletData);
             // console.log(firstWalletTransactions);
-            // console.log('');
             const secondWalletTransactions = findWallet(firstWalletAddress, _secondWalletData);
             // console.log(secondWalletTransactions);
-            // console.log('');
-            dispatch(submit(1, firstWalletAddress, _firstWalletData, firstWalletTransactions));
-            console.log('firstWalletData Executed');
-            console.log('');
-            dispatch(submit(2, secondWalletAddress, _secondWalletData, secondWalletTransactions));
-            console.log('secondWalletData Executed');
-            console.log('');
+
+            // dispatch global state
+            dispatch(submit(1, firstWalletAddress, _firstWalletData.result, firstWalletTransactions));
+            dispatch(submit(2, secondWalletAddress, _secondWalletData.result, secondWalletTransactions));
+
             alert('Form Submitted');
-            //reset to initial state
-            // setWallets(INITIAL_STATE);
-            // console.log(`firstWalletTransactions ${firstWalletTransactions}`);
+
+            // reset to INITIAL_STATE
+            setWallets(INITIAL_STATE);
+
 
         } catch (error) {
             alert(`Error with API ${error}`);
-            // setWallets(INITIAL_STATE);
         };
     };
 
@@ -111,6 +110,7 @@ const WalletAddressForm = () => {
 
             </form>
         </div>
+        {/* <Wallets/> */}
     </>;
 }
  
