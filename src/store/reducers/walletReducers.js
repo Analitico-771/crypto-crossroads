@@ -5,10 +5,10 @@ const walletData = (state, action) => {
     if(state == null){
         state = {
             firstAddress: [],
-            secondAddress: [],
             firstWalletData: [],
-            secondWalletData: [],
             firstWalletTransactions: [],
+            secondAddress: [],
+            secondWalletData: [],
             secondWalletTransactions: []
         };
     };
@@ -38,6 +38,12 @@ const walletData = (state, action) => {
         
         default:
             return state;
+
+        // case types.REMOVE:
+
+        
+        // default:
+        //     return state;
     };
 };
 
