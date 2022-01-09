@@ -1,0 +1,55 @@
+.App {
+  text-align: center;
+}
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: gray;
+}
+
+.search {
+  color: red;
+}
+
+.form-button {
+  /* background: transparent; */
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 20px;
+  position: relative;
+  top: 0;
+  right: 0;
+  padding: 18px 20px;
+  z-index: 2;
+}
+
+.fg--search {
+  background: white;
+  position: relative;
+  min-width: 200px;
+  /* width: 300px; */
+}
+
+.fg--search input {
+  width: 100%;
+  padding: 20px 60px 20px 20px;
+  display: block;
+}
+
+.fg--search .fa-search {
+  color: red;
+}
