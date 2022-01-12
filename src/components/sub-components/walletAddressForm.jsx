@@ -51,9 +51,9 @@ const WalletAddressForm = () => {
 
             // get transaction matches
             const firstWalletTransactions = findWallet(secondWalletAddress, _firstWalletData);
-            console.log('firstWalletTransactions', firstWalletTransactions);
+            // console.log('firstWalletTransactions', firstWalletTransactions);
             const secondWalletTransactions = findWallet(firstWalletAddress, _secondWalletData);
-            console.log('secondWalletTransactions', secondWalletTransactions);
+            // console.log('secondWalletTransactions', secondWalletTransactions);
 
             // dispatch global state
             dispatch(submit(1, firstWalletAddress, _firstWalletData.result, firstWalletTransactions));
@@ -62,12 +62,12 @@ const WalletAddressForm = () => {
             alert('Form Submitted');
 
             // reset to INITIAL_STATE
-            // setWallets(INITIAL_STATE);
+            setWallets(INITIAL_STATE);
 
 
         } catch (error) {
             alert(`Error with API ${error}`);
-            // setWallets(INITIAL_STATE);
+            setWallets(INITIAL_STATE);
         };
     };
 

@@ -13,20 +13,20 @@ const Wallets = () => {
         //     cleanup
         // }
         console.log('Wallets useEffect Ran');
-    },[firstWalletData, secondWalletData, firstWalletTransactions, secondWalletTransactions])
+    },[firstWalletData, secondWalletData, firstWalletTransactions, secondWalletTransactions]);
+
     console.log(firstWalletTransactions.transactions);
     console.log(secondWalletTransactions.transactions);
-    // console.log(firstWalletData);
+    console.log(firstWalletData.length);
 
     return <>
         {/* <h3>This is Wallets</h3> */}
-        {/* <WalletAddressForm/> */}
 
         {
             firstWalletTransactions.transactions && firstWalletTransactions.transactions ?
             <div>
                 <h4>
-                    The first wallet has had <strong>{firstWalletTransactions.length}</strong> transactions with the second wallet over the past {firstWalletData.length} transactions
+                    The first wallet has had <strong>{firstWalletTransactions.transactions.length}</strong> transactions with the second wallet over the past {firstWalletData.length} transactions
                 </h4>
                 {
                     firstWalletTransactions.transactions && firstWalletTransactions.transactions.map((hash, index) => {
@@ -49,7 +49,7 @@ const Wallets = () => {
             secondWalletTransactions.transactions && secondWalletTransactions.transactions ?
             <div>
                 <h4>
-                    The second wallet has had <strong>{secondWalletTransactions.length}</strong> transactions with the first wallet over the past {secondWalletData.length} transactions
+                    The second wallet has had <strong>{secondWalletTransactions.transactions.length}</strong> transactions with the first wallet over the past {secondWalletData.length} transactions
                 </h4>
                 {
                     secondWalletTransactions.transactions && secondWalletTransactions.transactions.map((hash, index) => {
