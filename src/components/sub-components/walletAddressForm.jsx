@@ -1,7 +1,8 @@
 
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { submit } from '../../store/actions/walletActions';
+import Wallets from './wallets';
 import { findWallet } from '../utils/double';
 import { getData } from '../utils/getData';
 
@@ -50,9 +51,9 @@ const WalletAddressForm = () => {
 
             // get transaction matches
             const firstWalletTransactions = findWallet(secondWalletAddress, _firstWalletData);
-            // console.log(firstWalletTransactions);
+            // console.log('firstWalletTransactions', firstWalletTransactions);
             const secondWalletTransactions = findWallet(firstWalletAddress, _secondWalletData);
-            // console.log(secondWalletTransactions);
+            // console.log('secondWalletTransactions', secondWalletTransactions);
 
             // dispatch global state
             dispatch(submit(1, firstWalletAddress, _firstWalletData.result, firstWalletTransactions));
@@ -66,6 +67,7 @@ const WalletAddressForm = () => {
 
         } catch (error) {
             alert(`Error with API ${error}`);
+            setWallets(INITIAL_STATE);
         };
     };
 

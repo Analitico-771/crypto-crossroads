@@ -23,7 +23,9 @@ const walletData = (state, action) => {
                     ...state,
                     firstAddress: action.walletData.address,
                     firstWalletData: action.walletData.walletObj,
-                    firstWalletTransactions: action.walletData.transactions,
+                    firstWalletTransactions: {
+                        transactions: action.walletData.transactions
+                    },
                 }
             };
             if(action.walletData.number === 2){
@@ -31,7 +33,9 @@ const walletData = (state, action) => {
                     ...state,
                     secondAddress: action.walletData.address,
                     secondWalletData: action.walletData.walletObj,
-                    secondWalletTransactions: action.walletData.transactions,
+                    secondWalletTransactions: {
+                        transactions: action.walletData.transactions
+                    },
                 };
             };
             break;
